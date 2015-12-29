@@ -1,0 +1,79 @@
+<DockPanel>
+	<JavaScript File="AppPage.js" />
+	<iOS.StatusBarConfig Style="Light" />
+	<StatusBarBackground Dock="Top" />
+	<BottomBarBackground Dock="Bottom" IncludesKeyboard="false"/>
+
+	<!-- Direct Navigation -->
+	<Panel>
+		<Style>
+			<Panel>
+				<WhileActive>
+					<BringToFront />
+				</WhileActive>
+			</Panel>
+		</Style>
+		<DirectNavigation ux:Name="appNav" Active="group1"/>
+		<Panel Name="group1" Background="#CCC">
+			<Text Alignment="Center">Group 1</Text>
+		</Panel>
+		<Panel Name="group2" Background="#DDD">
+			<Text Alignment="Center">Group 2</Text>
+		</Panel>
+		<Panel Name="group3" Background="#EEE">
+			<Text Alignment="Center">Group 3</Text>
+		</Panel>
+	</Panel>
+
+	<!-- Linear Navigation -->
+	<!-- <PageControl ux:Name="appNav" Active="group1">
+		<Page Name="group1" Background="#CCC">
+			<Text Alignment="Center">Group 1</Text>
+		</Page>
+		<Page Name="group2" Background="#DDD">
+			<Text Alignment="Center">Group 2</Text>
+		</Page>
+		<Page Name="group3" Background="#EEE">
+			<Text Alignment="Center">Group 3</Text>
+		</Page>
+	</PageControl> -->
+
+	<MultiLayoutPanel ux:Name="appMenu" Height="50" Dock="Bottom" Background="#BBB" LayoutElement="tabGroup1">
+		<GridLayout ColumnCount="3" Rows="1*" />
+		<Style>
+			<Text TextColor="#666" FontSize="14" Alignment="Center" />
+		</Style>
+		<Panel ux:Name="tabGroup1" HitTestMode="LocalBoundsAndChildren">
+			<Placeholder>
+				<Rectangle ux:Name="tabIndicator" Alignment="Center" CornerRadius="5" Width="80" Height="36">
+					<Stroke Width="1" Brush="#FFF9" />
+					<LayoutAnimation>
+						<Move RelativeTo="LayoutChange" X="1" Duration=".6" Easing="BackIn" />
+					</LayoutAnimation>
+				</Rectangle>
+			</Placeholder>
+			<Text>Group 1</Text>
+			<Clicked>
+				<Set appNav.Active="group1" />
+				<Set appMenu.LayoutElement="tabGroup1" />
+			</Clicked>
+		</Panel>
+		<Panel ux:Name="tabGroup2" HitTestMode="LocalBoundsAndChildren">
+			<Placeholder Target="tabIndicator" />
+			<Text>Group 2</Text>
+			<Clicked>
+				<Set appNav.Active="group2" />
+				<Set appMenu.LayoutElement="tabGroup2" />
+			</Clicked>
+		</Panel>
+		<Panel ux:Name="tabGroup3" HitTestMode="LocalBoundsAndChildren">
+			<Placeholder Target="tabIndicator" />
+			<Text>Group 3</Text>
+			<Clicked>
+				<Set appNav.Active="group3" />
+				<Set appMenu.LayoutElement="tabGroup3" />
+			</Clicked>
+		</Panel>
+	</MultiLayoutPanel>
+
+</DockPanel>

@@ -1,0 +1,7 @@
+<App Theme="Basic">
+	<Panel>
+		<!-- <LoginPage /> -->
+		<AppPage /> 
+	</Panel>
+</App>
+
